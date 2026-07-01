@@ -20,7 +20,7 @@ class Pulse(Struct):
     adversary: str
     targeted_countries: list[str]
     malware_families: list[dict]
-    attack_ids: list[str]
+    attack_ids: list[dict]
     industries: list[str]
     TLP: str
     cloned_from: str | None
