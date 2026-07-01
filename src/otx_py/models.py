@@ -46,3 +46,10 @@ class Pulse(Struct):
     in_group: bool
     threat_hunter_scannable: bool
     threat_hunter_has_agents: int
+
+class IndicatorType(Struct):
+    name: str
+    description: str
+    slug: str
+class IndcatorTypeResponse(Struct):
+    detail: list[IndicatorType]
