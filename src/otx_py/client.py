@@ -1,5 +1,5 @@
 from httpx import Client
-from otx_py.models import Pulse
+from otx_py.models import Pulse,IndcaterTypeResponse
 from msgspec.json import decode
 from msgspec import Struct
 
@@ -16,3 +16,7 @@ class OTXClient:
     def pulses(self, limit: int = 25) -> PulsesResponse:
         response = self.client.get("https://otx.alienvault.com/otxapi/pulses", params={"limit": limit, "page": 1, "sort": "-modified"}, timeout=60)
         return decode(response.text, type=PulsesResponse)
+    
+    def indcater_type_response(self) -> IndcaterTypeResponse:
+        response = self.client.get("/pulses/indicators/types", timeout=60)
+        return decode(response.text, type=IndcaterTypeResponse)
