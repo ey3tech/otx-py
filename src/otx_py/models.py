@@ -51,5 +51,67 @@ class IndicatorType(Struct):
     name: str
     description: str
     slug: str
-class IndcatorTypeResponse(Struct):
+class IndicatorTypeResponse(Struct):
     detail: list[IndicatorType]
+
+class BaseIndicator(Struct):
+    id: int
+    indicator: str
+    type: str
+    title: str
+    description: str
+    content: str
+    access_type: str
+    access_reason: str
+
+class IndicatorLookUpResponse(Struct):
+    base_indicator: BaseIndicator
+    whois: str
+    reputation: int
+    indicator: str
+    type: str
+    type_title: str
+    pulse_info: PulseInfo
+    false_positive: list[str]
+    validation: list[str]
+    asn: str
+    city_data: bool
+    city: str | None
+    region: str | None
+    continent_code: str
+    country_code3: str
+    country_code2: str
+    subdivision: str | None
+    latitude: float
+    postal_code: str | None
+    longitude: float
+    accuracy_radius: int
+    country_code: str
+    country_name: str
+    dma_code: int
+    charset: int
+    area_code: int
+    flag_url: str
+    flag_title: str
+    sections: list[str]
+
+
+class PulseInfo(Struct):
+    count: int
+    references: list[str]
+    pulses: list[Pulse]
+    related: Related
+
+class RelatedIndcator(Struct):
+    adversary: list[str]
+    malware_families: list[str]
+    industries: list[str]
+
+class Related(Struct): 
+    alienvault: RelatedIndcator
+    other: RelatedIndcator
+
+    
+
+
+    
