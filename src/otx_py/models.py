@@ -13,41 +13,41 @@ class Author(Struct):
 class Pulse(Struct):
     id: str
     name: str
-    description: str
+    description: str | None
     modified: datetime
     created: datetime
     tags: list[str]
     references: list[str]
     public: int
-    adversary: str
+    adversary: str | None
     targeted_countries: list[str]
     malware_families: list[dict]
     attack_ids: list[dict]
     industries: list[str]
     TLP: str
-    cloned_from: str | None
-    export_count: int
-    upvotes_count: int
-    downvotes_count: int
-    votes_count: int
-    locked: bool
-    pulse_source: str
-    validator_count: int
-    comment_count: int
-    follower_count: int
-    vote: int
     author: Author
-    indicator_type_counts: dict[str, int]
-    indicator_count: int
-    is_author: bool
     is_subscribing: bool | None
-    subscriber_count: int
-    modified_text: str
-    is_modified: bool
     groups: list[str]
     in_group: bool
-    threat_hunter_scannable: bool
-    threat_hunter_has_agents: int
+    is_modified: bool | None = None
+    modified_text: str | None = None
+    is_author: bool | None = None
+    indicator_type_counts: dict[str, int] | None = None
+    indicator_count: int | None = None
+    threat_hunter_scannable: bool | None = None
+    vote: int | None = None
+    threat_hunter_has_agents: int | None = None
+    locked: bool | None = None
+    validator_count: int | None = None
+    pulse_source: str | None = None
+    comment_count: int | None = None
+    follower_count: int | None = None
+    subscriber_count: int | None = None
+    upvotes_count: int | None = None
+    downvotes_count: int | None = None
+    votes_count: int | None = None
+    export_count: int | None = None
+    cloned_from: str | None = None
 
 
 class IndicatorType(Struct):
