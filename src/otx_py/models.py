@@ -126,13 +126,16 @@ class User(Struct):
     follower_count: int
     member_since: str
     avatar_url: str
-    award_count: int
-    awards: list[dict]
-    user_id: int
     username: str
     indicator_count: int
     pulse_count: int
-    accepted_edits_count: int
+    request_user_is_subscribed: bool | None = None
+    request_user_is_following: bool | None = None
+    request_user_is_me: bool | None = None
+    user_id: int | None = None
+    award_count: int | None = None
+    accepted_edits_count: int | None = None
+    awards: list[dict] | None = None
 
 
 class UserSearchResponse(Struct):
@@ -147,3 +150,4 @@ class PulseSearchResponse(Struct):
     previous: str | None
     next: str | None
     results: list[Pulse]
+

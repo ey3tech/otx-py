@@ -4,6 +4,7 @@ from otx_py.models import (
     IndicatorTypeResponse,
     UserSearchResponse,
     PulseSearchResponse,
+    User
 )
 from msgspec.json import decode
 from msgspec import Struct
@@ -55,3 +56,7 @@ class OTXClient:
             timeout=60,
         )
         return decode(response.text, type=PulseSearchResponse)
+
+    def get_user(self, username: str, detail: bool ) -> User:
+        response = self.client.get(f"/users/{username}", timeout=60, params={"detailed": int(detail)})
+        return decode(response.text, type=User)
