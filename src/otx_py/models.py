@@ -140,3 +140,10 @@ class UserSearchResponse(Struct):
     previous: str | None
     next: str | None
     results: list[User]
+
+
+class PulseSearchResponse(Struct):
+    count: int
+    previous: str | None
+    next: str | None
+    results: list[Pulse]

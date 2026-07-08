@@ -1,5 +1,10 @@
 from httpx import Client
-from otx_py.models import Pulse, IndicatorTypeResponse, UserSearchResponse
+from otx_py.models import (
+    Pulse,
+    IndicatorTypeResponse,
+    UserSearchResponse,
+    PulseSearchResponse,
+)
 from msgspec.json import decode
 from msgspec import Struct
 
@@ -40,3 +45,13 @@ class OTXClient:
             timeout=60,
         )
         return decode(response.text, type=UserSearchResponse)
+
+    def search_pulses(
+        self, query: str, page: int = 1, limit: int = 20
+    ) -> PulseSearchResponse:
+        response = self.client.get(
+            "/search/pulses",
+            params={"q": query, "page": page, "limit": limit},
+            timeout=60,
+        )
+        return decode(response.text, type=PulseSearchResponse)
