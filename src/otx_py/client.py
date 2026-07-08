@@ -1,5 +1,5 @@
 from httpx import Client
-from otx_py.models import Pulse, IndicatorTypeResponse
+from otx_py.models import Pulse, IndicatorTypeResponse, UserSearchResponse
 from msgspec.json import decode
 from msgspec import Struct
 
@@ -30,3 +30,13 @@ class OTXClient:
     def indicator_types(self) -> IndicatorTypeResponse:
         response = self.client.get("/pulses/indicators/types", timeout=60)
         return decode(response.text, type=IndicatorTypeResponse)
+
+    def search_users(
+        self, query: str, page: int = 1, limit: int = 20
+    ) -> UserSearchResponse:
+        response = self.client.get(
+            "/search/users",
+            params={"q": query, "page": page, "limit": limit},
+            timeout=60,
+        )
+        return decode(response.text, type=UserSearchResponse)

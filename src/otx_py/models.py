@@ -71,6 +71,24 @@ class BaseIndicator(Struct):
     access_reason: str
 
 
+class RelatedIndcator(Struct):
+    adversary: list[str]
+    malware_families: list[str]
+    industries: list[str]
+
+
+class Related(Struct):
+    alienvault: RelatedIndcator
+    other: RelatedIndcator
+
+
+class PulseInfo(Struct):
+    count: int
+    references: list[str]
+    pulses: list[Pulse]
+    related: Related
+
+
 class IndicatorLookUpResponse(Struct):
     base_indicator: BaseIndicator
     whois: str
@@ -103,19 +121,22 @@ class IndicatorLookUpResponse(Struct):
     sections: list[str]
 
 
-class PulseInfo(Struct):
+class User(Struct):
+    subscriber_count: int
+    follower_count: int
+    member_since: str
+    avatar_url: str
+    award_count: int
+    awards: list[dict]
+    user_id: int
+    username: str
+    indicator_count: int
+    pulse_count: int
+    accepted_edits_count: int
+
+
+class UserSearchResponse(Struct):
     count: int
-    references: list[str]
-    pulses: list[Pulse]
-    related: Related
-
-
-class RelatedIndcator(Struct):
-    adversary: list[str]
-    malware_families: list[str]
-    industries: list[str]
-
-
-class Related(Struct):
-    alienvault: RelatedIndcator
-    other: RelatedIndcator
+    previous: str | None
+    next: str | None
+    results: list[User]
