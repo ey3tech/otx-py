@@ -1,5 +1,5 @@
 from httpx import Client
-from otx_py.models import Pulse, IndcatorTypeResponse
+from otx_py.models import Pulse, IndicatorTypeResponse
 from msgspec.json import decode
 from msgspec import Struct
 
@@ -27,6 +27,6 @@ class OTXClient:
         )
         return decode(response.text, type=PulsesResponse)
 
-    def indcator_types(self) -> IndcatorTypeResponse:
+    def indicator_types(self) -> IndicatorTypeResponse:
         response = self.client.get("/pulses/indicators/types", timeout=60)
-        return decode(response.text, type=IndcatorTypeResponse)
+        return decode(response.text, type=IndicatorTypeResponse)
