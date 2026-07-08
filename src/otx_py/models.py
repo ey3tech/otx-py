@@ -1,12 +1,14 @@
 from msgspec import Struct
 from datetime import datetime
 
+
 class Author(Struct):
     username: str
     id: str
     avatar_url: str
     is_subscribed: bool
     is_following: bool
+
 
 class Pulse(Struct):
     id: str
@@ -47,12 +49,16 @@ class Pulse(Struct):
     threat_hunter_scannable: bool
     threat_hunter_has_agents: int
 
+
 class IndicatorType(Struct):
     name: str
     description: str
     slug: str
+
+
 class IndicatorTypeResponse(Struct):
     detail: list[IndicatorType]
+
 
 class BaseIndicator(Struct):
     id: int
@@ -63,6 +69,7 @@ class BaseIndicator(Struct):
     content: str
     access_type: str
     access_reason: str
+
 
 class IndicatorLookUpResponse(Struct):
     base_indicator: BaseIndicator
@@ -102,16 +109,13 @@ class PulseInfo(Struct):
     pulses: list[Pulse]
     related: Related
 
+
 class RelatedIndcator(Struct):
     adversary: list[str]
     malware_families: list[str]
     industries: list[str]
 
-class Related(Struct): 
+
+class Related(Struct):
     alienvault: RelatedIndcator
     other: RelatedIndcator
-
-    
-
-
-    
