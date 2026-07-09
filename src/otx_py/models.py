@@ -137,6 +137,38 @@ class User(Struct):
     accepted_edits_count: int | None = None
     awards: list[dict] | None = None
 
+class Indicators(Struct):
+    id: int
+    indicator: float
+    type: str
+    title: str
+    description: str
+    content: str
+    created: datetime
+    is_active: int
+    expiration: datetime
+class PulseId(Struct):
+    id: str | None = None
+    name: str | None = None
+    description: str | None = None
+    author_name: str | None = None
+    created: datetime | None = None
+    modified: datetime | None = None
+    public: bool | None = None
+    TLP: str | None = None
+    adversary: str | None = None
+    tags: list[str] | None = None
+    references: list[str] | None = None
+    targeted_countries: list[str] | None = None
+    industries: list[str] | None = None
+    malware_families: list[str] | None = None
+    attack_ids: list[str] | None = None
+    indicator_count: int | None = None
+    subscriber_count: int | None = None
+    upvotes_count: int | None = None
+    group_ids: list[int] | None = None
+    details: list[Indicators] | None = None
+
 
 class UserSearchResponse(Struct):
     count: int
@@ -150,4 +182,21 @@ class PulseSearchResponse(Struct):
     previous: str | None
     next: str | None
     results: list[Pulse]
+
+
+class results(Struct):
+    id: int
+    indicator: float
+    type: str
+    title: str
+    description: str
+    content: str
+    created: datetime
+    is_active: int
+    expiration: datetime
+class PulseIdIndicators(Struct):
+    next: str
+    previous: str
+    details: list[results]
+    count: int | None = None
 

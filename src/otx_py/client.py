@@ -4,7 +4,9 @@ from otx_py.models import (
     IndicatorTypeResponse,
     UserSearchResponse,
     PulseSearchResponse,
-    User
+    User,
+    PulseId,
+    PulseIdIndicators
 )
 from msgspec.json import decode
 from msgspec import Struct
@@ -60,3 +62,11 @@ class OTXClient:
     def get_user(self, username: str, detail: bool ) -> User:
         response = self.client.get(f"/users/{username}", timeout=60, params={"detailed": int(detail)})
         return decode(response.text, type=User)
+    
+    def pulse_id(self, pulse_id: str) -> PulseId:
+        response = self.client.get(f"/pulses/{pulse_id}", timeout=60)
+        return decode(response.text, type=PulseId)
+    
+    def pulse_id_indicators(self, pulse_id: str, limit: int = 50) -> PulseIdIndicators:
+        response = self.client.get(f"/pulses/{pulse_id}/indicators", timeout=60, params={"limit": limit})
+        return decode(response.text, type=PulseIdIndicators)
