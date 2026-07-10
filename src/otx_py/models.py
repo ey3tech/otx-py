@@ -154,7 +154,7 @@ class PulseId(Struct):
     author_name: str | None = None
     created: datetime | None = None
     modified: datetime | None = None
-    public: bool | None = None
+    public: int | None = None
     TLP: str | None = None
     adversary: str | None = None
     tags: list[str] | None = None
@@ -195,8 +195,8 @@ class results(Struct):
     is_active: int
     expiration: datetime
 class PulseIdIndicators(Struct):
-    next: str
-    previous: str
-    details: list[results]
+    details: list[results] | None = None
+    previous: str | None = None
+    next: str | None = None
     count: int | None = None
 
